@@ -8,5 +8,5 @@ import org.mapstruct.Mapper;
 public interface DiagnosticoMapper {
     DiagnosticoDTO toDto(Diagnostico diagnostico);
 
-    DiagnosticoDTO toEntity(DiagnosticoDTO diagnosticoDTO);
+    Diagnostico toEntity(DiagnosticoDTO diagnosticoDTO);
 }

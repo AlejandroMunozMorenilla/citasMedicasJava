@@ -4,16 +4,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "MEDICO")
-@Getter
-@Setter
+@Data
 public class Medico extends Usuario {
     @Column(name = "numColegiado", nullable = false, length = 11, unique = true)
     private String numColegiado;

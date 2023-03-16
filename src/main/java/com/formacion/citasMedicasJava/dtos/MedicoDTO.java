@@ -1,23 +1,15 @@
 package com.formacion.citasMedicasJava.dtos;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.util.Set;
 
-@Getter
-@Setter
-@Builder
-public class MedicoDTO implements Serializable {
-    private Long id;
-    private String nombre;
-    private String apellidos;
-    private String usuario;
+@Data
+@NoArgsConstructor
+@Component
+public class MedicoDTO extends UsuarioDTO{
     private String numColegiado;
     private Set<PacienteDTO> pacientes;
-
-    public MedicoDTO() {
-    }
 }

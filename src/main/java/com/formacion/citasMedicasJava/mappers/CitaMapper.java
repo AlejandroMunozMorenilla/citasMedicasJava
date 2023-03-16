@@ -8,5 +8,5 @@ import org.mapstruct.Mapper;
 public interface CitaMapper {
     CitaDTO toDto(Cita cita);
 
-    CitaDTO toEntity(CitaDTO citaDTO);
+    Cita toEntity(CitaDTO citaDTO);
 }

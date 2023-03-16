@@ -3,17 +3,15 @@ package com.formacion.citasMedicasJava.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "CITA")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Cita extends AbstractPersistable<Long> {
     private LocalDate fechaHora;

@@ -3,15 +3,13 @@ package com.formacion.citasMedicasJava.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "DIAGNOSTICO")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Diagnostico extends AbstractPersistable<Long> {
     @Column(nullable = false)

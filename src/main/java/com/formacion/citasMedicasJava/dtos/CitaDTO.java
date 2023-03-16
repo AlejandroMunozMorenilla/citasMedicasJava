@@ -1,16 +1,15 @@
 package com.formacion.citasMedicasJava.dtos;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-public class CitaDTO implements Serializable {
+@Component
+public class CitaDTO {
     private Long id;
     private LocalDate fechaHora;
     private String motivoCita;

@@ -1,21 +1,21 @@
 package com.formacion.citasMedicasJava.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-@Getter
-@Setter
-public class PacienteDTO {
-    private Long id;
-    private String nombre;
-    private String apellidos;
-    private String usario;
+@Data
+@NoArgsConstructor
+@Component
+public class PacienteDTO extends UsuarioDTO{
     private String NSS;
     private String numTarjeta;
     private String telefono;
     private String direccion;
     private Set<MedicoDTO> medicos;
+
+    private String clave;
 
 }

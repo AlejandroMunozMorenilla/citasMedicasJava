@@ -20,6 +20,11 @@ public class MedicoController {
         return medicoService.todosLosMedicos();
     }
 
+    @GetMapping("/{id}")
+    public MedicoDTO buscarPorId(@PathVariable Long id) {
+        return medicoService.buscarPorId(id);
+    }
+
     @PostMapping
     public ResponseEntity<MedicoDTO> guardarMedico(@RequestBody MedicoDTO medicoDto) {
         return ResponseEntity.ok(medicoService.guardarMedico(medicoDto));
@@ -35,5 +40,6 @@ public class MedicoController {
     public void delete(@PathVariable Long id) {
         medicoService.eliminarMedico(id);
     }
+
 
 }

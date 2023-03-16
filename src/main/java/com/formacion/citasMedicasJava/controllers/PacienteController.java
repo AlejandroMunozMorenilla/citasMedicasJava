@@ -1,6 +1,5 @@
 package com.formacion.citasMedicasJava.controllers;
 
-import com.formacion.citasMedicasJava.dtos.MedicoDTO;
 import com.formacion.citasMedicasJava.dtos.PacienteDTO;
 import com.formacion.citasMedicasJava.services.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,11 @@ public class PacienteController {
     @GetMapping
     public Set<PacienteDTO> index() {
         return medicoService.todosLosPacientes();
+    }
+
+    @GetMapping("/{id}")
+    public PacienteDTO buscarPorId(@PathVariable Long id) {
+        return medicoService.buscarPorId(id);
     }
 
     @PostMapping

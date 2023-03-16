@@ -27,6 +27,10 @@ public class UsuarioService {
         return usuarioRepository.findAll().stream().map(usuarioMapper::toDTO).collect(Collectors.toSet());
     }
 
+    public UsuarioDTO buscarPorId(Long id) {
+        return usuarioMapper.toDTO(usuarioRepository.findById(id).orElse(null));
+    }
+
     public UsuarioDTO guardarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuarioGuardado = usuarioRepository.save(usuarioMapper.toEntity(usuarioDTO));
         return usuarioMapper.toDTO(usuarioGuardado);

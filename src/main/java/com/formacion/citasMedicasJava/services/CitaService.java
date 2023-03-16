@@ -26,6 +26,9 @@ public class CitaService {
     public Set<CitaDTO> todasLasCitas() {
         return citaRepository.findAll().stream().map(citaMapper::toDto).collect(Collectors.toSet());
     }
+    public CitaDTO buscarCitaPorId(Long id) {
+        return citaMapper.toDto(citaRepository.findById(id).orElse(null));
+    }
 
     public CitaDTO guardarCita(CitaDTO citaDTO) {
         Cita medicoGuardado = citaRepository.save(citaMapper.toEntity(citaDTO));

@@ -1,7 +1,6 @@
 package com.formacion.citasMedicasJava.controllers;
 
 import com.formacion.citasMedicasJava.dtos.CitaDTO;
-import com.formacion.citasMedicasJava.dtos.MedicoDTO;
 import com.formacion.citasMedicasJava.services.CitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +18,11 @@ public class CitaController {
     @GetMapping
     public Set<CitaDTO> index() {
         return citaService.todasLasCitas();
+    }
+
+    @GetMapping("/{id}")
+    public CitaDTO buscarPorId(@PathVariable Long id) {
+        return citaService.buscarCitaPorId(id);
     }
 
     @PostMapping

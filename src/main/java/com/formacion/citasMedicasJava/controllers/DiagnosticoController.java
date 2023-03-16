@@ -1,7 +1,7 @@
 package com.formacion.citasMedicasJava.controllers;
 
-import com.formacion.citasMedicasJava.dtos.MedicoDTO;
-import com.formacion.citasMedicasJava.services.MedicoService;
+import com.formacion.citasMedicasJava.dtos.DiagnosticoDTO;
+import com.formacion.citasMedicasJava.services.DiagnosticoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,27 +13,32 @@ import java.util.Set;
 @RequestMapping("/diagnosticos")
 public class DiagnosticoController {
     @Autowired
-    private MedicoService medicoService;
+    private DiagnosticoService diagnosticoService;
 
     @GetMapping
-    public Set<MedicoDTO> index() {
-        return medicoService.todosLosMedicos();
+    public Set<DiagnosticoDTO> index() {
+        return diagnosticoService.todosLosDiagnosticos();
+    }
+
+    @GetMapping("/{id}")
+    public DiagnosticoDTO buscarPorId(@PathVariable Long id) {
+        return diagnosticoService.buscarPorId(id);
     }
 
     @PostMapping
-    public ResponseEntity<MedicoDTO> guardarMedico(@RequestBody MedicoDTO medicoDto) {
-        return ResponseEntity.ok(medicoService.guardarMedico(medicoDto));
+    public ResponseEntity<DiagnosticoDTO> guardarMedico(@RequestBody DiagnosticoDTO diagnosticoDTO) {
+        return ResponseEntity.ok(diagnosticoService.guardarDiagnostico(diagnosticoDTO));
     }
 
     @PutMapping("/{id}")
-    public MedicoDTO update(@PathVariable Long id, @RequestBody MedicoDTO medicoDto) {
-        return medicoService.guardarMedico(medicoDto);
+    public DiagnosticoDTO update(@PathVariable Long id, @RequestBody DiagnosticoDTO diagnosticoDTO) {
+        return diagnosticoService.guardarDiagnostico(diagnosticoDTO);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        medicoService.eliminarMedico(id);
+        diagnosticoService.eliminarDiagnostico(id);
     }
 
 }

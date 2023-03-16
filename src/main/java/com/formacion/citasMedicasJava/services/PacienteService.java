@@ -27,6 +27,10 @@ public class PacienteService {
         return pacienteRepository.findAll().stream().map(pacienteMapper::toDto).collect(Collectors.toSet());
     }
 
+    public PacienteDTO buscarPorId(Long id) {
+        return pacienteMapper.toDto(pacienteRepository.findById(id).orElse(null));
+    }
+
     public PacienteDTO guardarPaciente(PacienteDTO pacienteDto) {
         Paciente pacienteGuardado = pacienteRepository.save(pacienteMapper.toEntity(pacienteDto));
         return pacienteMapper.toDto(pacienteGuardado);

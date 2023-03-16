@@ -27,6 +27,10 @@ public class MedicoService {
         return medicoRepository.findAll().stream().map(medicoMapper::toDto).collect(Collectors.toSet());
     }
 
+    public MedicoDTO buscarPorId(Long id) {
+        return medicoMapper.toDto(medicoRepository.findById(id).orElse(null));
+    }
+
     public MedicoDTO guardarMedico(MedicoDTO medicoDto) {
         Medico medicoGuardado = medicoRepository.save(medicoMapper.toEntity(medicoDto));
         return medicoMapper.toDto(medicoGuardado);
@@ -35,4 +39,5 @@ public class MedicoService {
     public void eliminarMedico(Long id) {
         medicoRepository.deleteById(id);
     }
+
 }

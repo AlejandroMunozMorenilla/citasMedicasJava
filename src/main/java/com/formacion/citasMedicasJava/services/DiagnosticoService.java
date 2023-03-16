@@ -27,6 +27,10 @@ public class DiagnosticoService {
         return diagnosticoRepository.findAll().stream().map(diagnosticoMapper::toDto).collect(Collectors.toSet());
     }
 
+    public DiagnosticoDTO buscarPorId(Long id) {
+        return diagnosticoMapper.toDto(diagnosticoRepository.findById(id).orElse(null));
+    }
+
     public DiagnosticoDTO guardarDiagnostico(DiagnosticoDTO diagnosticoDto) {
         Diagnostico diagnosticoGuardado = diagnosticoRepository.save(diagnosticoMapper.toEntity(diagnosticoDto));
         return diagnosticoMapper.toDto(diagnosticoGuardado);

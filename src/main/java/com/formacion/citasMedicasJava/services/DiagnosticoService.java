@@ -17,12 +17,6 @@ public class DiagnosticoService {
     @Autowired
     private DiagnosticoMapper diagnosticoMapper;
 
-
-    public DiagnosticoDTO insertarDiagnostico(DiagnosticoDTO diagnosticoDTO) {
-        Diagnostico diagnostico = diagnosticoMapper.toEntity(diagnosticoDTO);
-        return diagnosticoMapper.toDto(diagnosticoRepository.save(diagnostico));
-    }
-
     public Set<DiagnosticoDTO> todosLosDiagnosticos() {
         return diagnosticoRepository.findAll().stream().map(diagnosticoMapper::toDto).collect(Collectors.toSet());
     }

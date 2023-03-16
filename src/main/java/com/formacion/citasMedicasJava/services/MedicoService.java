@@ -17,12 +17,6 @@ public class MedicoService {
     @Autowired
     private MedicoMapper medicoMapper;
 
-
-    public MedicoDTO insertarMedico(MedicoDTO medicoDTO) {
-        Medico medico = medicoMapper.toEntity(medicoDTO);
-        return medicoMapper.toDto(medicoRepository.save(medico));
-    }
-
     public Set<MedicoDTO> todosLosMedicos() {
         return medicoRepository.findAll().stream().map(medicoMapper::toDto).collect(Collectors.toSet());
     }

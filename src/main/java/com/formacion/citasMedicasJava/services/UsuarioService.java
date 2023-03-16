@@ -17,12 +17,6 @@ public class UsuarioService {
     @Autowired
     private UsuarioMapper usuarioMapper;
 
-
-    public UsuarioDTO insertarUsuario(UsuarioDTO usuarioDTO) {
-        Usuario paciente = usuarioMapper.toEntity(usuarioDTO);
-        return usuarioMapper.toDTO(usuarioRepository.save(paciente));
-    }
-
     public Set<UsuarioDTO> todosLosUsuarios() {
         return usuarioRepository.findAll().stream().map(usuarioMapper::toDTO).collect(Collectors.toSet());
     }

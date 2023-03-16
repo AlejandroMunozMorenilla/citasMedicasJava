@@ -7,14 +7,14 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 @NoArgsConstructor
 public class Usuario extends AbstractPersistable<Long> {
     @Column(name = "nombre",
             length = 25,
             nullable = false
-            )
+    )
     private String nombre;
     @Column(name = "apellidos",
             length = 30,
@@ -25,8 +25,8 @@ public class Usuario extends AbstractPersistable<Long> {
             nullable = false, unique = true
     )
     private String usuario;
-    @Column(name = "clave"
-//            nullable = false
+    @Column(name = "clave",
+            nullable = false
     )
     private String clave;
 }

@@ -17,15 +17,10 @@ public class CitaService {
     @Autowired
     private CitaMapper citaMapper;
 
-
-    public CitaDTO insertarCita(CitaDTO citaDTO) {
-        Cita cita = citaMapper.toEntity(citaDTO);
-        return citaMapper.toDto(citaRepository.save(cita));
-    }
-
     public Set<CitaDTO> todasLasCitas() {
         return citaRepository.findAll().stream().map(citaMapper::toDto).collect(Collectors.toSet());
     }
+
     public CitaDTO buscarCitaPorId(Long id) {
         return citaMapper.toDto(citaRepository.findById(id).orElse(null));
     }

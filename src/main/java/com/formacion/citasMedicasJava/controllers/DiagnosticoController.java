@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/diagnosticos")
+@RequestMapping("/diagnosticoes")
 public class DiagnosticoController {
     @Autowired
     private DiagnosticoService diagnosticoService;
@@ -26,13 +26,9 @@ public class DiagnosticoController {
     }
 
     @PostMapping
+    @PutMapping
     public ResponseEntity<DiagnosticoDTO> guardarMedico(@RequestBody DiagnosticoDTO diagnosticoDTO) {
         return ResponseEntity.ok(diagnosticoService.guardarDiagnostico(diagnosticoDTO));
-    }
-
-    @PutMapping("/{id}")
-    public DiagnosticoDTO update(@PathVariable Long id, @RequestBody DiagnosticoDTO diagnosticoDTO) {
-        return diagnosticoService.guardarDiagnostico(diagnosticoDTO);
     }
 
     @DeleteMapping("/{id}")

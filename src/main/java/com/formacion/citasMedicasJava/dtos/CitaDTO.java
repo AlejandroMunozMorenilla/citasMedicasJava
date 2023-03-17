@@ -16,6 +16,6 @@ public class CitaDTO {
     private int attribute11;
 
     private PacienteDTO paciente;
-    private PacienteDTO medico;
-    private PacienteDTO diagnostico;
+    private MedicoDTO medico;
+    private DiagnosticoDTO diagnostico;
 }

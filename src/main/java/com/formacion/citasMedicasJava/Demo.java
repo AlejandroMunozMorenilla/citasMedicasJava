@@ -3,12 +3,16 @@ package com.formacion.citasMedicasJava;
 import com.formacion.citasMedicasJava.controllers.MedicoController;
 import com.formacion.citasMedicasJava.controllers.PacienteController;
 import com.formacion.citasMedicasJava.controllers.UsuarioController;
+import com.formacion.citasMedicasJava.models.Cita;
 import com.formacion.citasMedicasJava.models.Medico;
 import com.formacion.citasMedicasJava.models.Paciente;
+import com.formacion.citasMedicasJava.repositories.CitaRepository;
 import com.formacion.citasMedicasJava.repositories.MedicoRepository;
 import com.formacion.citasMedicasJava.repositories.PacienteRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class Demo implements CommandLineRunner {
@@ -17,15 +21,18 @@ public class Demo implements CommandLineRunner {
     private final PacienteController pacienteController;
     private final PacienteRepository pacienteRepository;
     private final MedicoRepository medicoRepository;
+    private final CitaRepository citaRepository;
 
     public Demo(UsuarioController usuarioController, MedicoController medicoController, PacienteController pacienteController,
                 PacienteRepository pacienteRepository,
-                MedicoRepository medicoRepository) {
+                MedicoRepository medicoRepository,
+                CitaRepository citaRepository) {
         this.usuarioController = usuarioController;
         this.medicoController = medicoController;
         this.pacienteController = pacienteController;
         this.pacienteRepository = pacienteRepository;
         this.medicoRepository = medicoRepository;
+        this.citaRepository = citaRepository;
     }
 
     @Override
@@ -50,5 +57,16 @@ public class Demo implements CommandLineRunner {
         medico.getPacientes().add(paciente);
         pacienteRepository.save(paciente);
         medicoRepository.save(medico);
+
+
+
+        Cita cita = new Cita();
+        cita.setMotivoCita("Dolor de cabeza");
+        cita.setFechaHora(LocalDate.now());
+        cita.setAttribute11(1);
+        cita.setMedico(medico);
+        cita.setPaciente(paciente);
+
+        citaRepository.save(cita);
     }
 }

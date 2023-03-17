@@ -1,9 +1,6 @@
 package com.formacion.citasMedicasJava.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -16,10 +13,13 @@ public class Medico extends Usuario {
     @Column(name = "numColegiado", nullable = false, length = 11, unique = true)
     private String numColegiado;
     @ManyToMany
+    @JoinTable(name = "medico_paciente",
+            joinColumns = @JoinColumn(name = "medico_id"),
+            inverseJoinColumns = @JoinColumn(name = "paciente_id"))
     private Set<Paciente> pacientes;
 
     public Medico() {
+        super();
         pacientes = new HashSet<>();
     }
-
 }

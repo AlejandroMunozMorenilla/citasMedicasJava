@@ -1,5 +1,6 @@
 package com.formacion.citasMedicasJava.controllers;
 
+import com.formacion.citasMedicasJava.dtos.MedicoDTO;
 import com.formacion.citasMedicasJava.dtos.PacienteDTO;
 import com.formacion.citasMedicasJava.services.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class PacienteController {
     private PacienteService medicoService;
 
     @GetMapping
-    public Set<PacienteDTO> index() {
+    public Set<PacienteDTO> listadoPaceintes() {
         return medicoService.todosLosPacientes();
     }
 
@@ -24,15 +25,15 @@ public class PacienteController {
     public PacienteDTO buscarPorId(@PathVariable Long id) {
         return medicoService.buscarPorId(id);
     }
-
-    @PostMapping
-    public ResponseEntity<PacienteDTO> guardarPaciente(@RequestBody PacienteDTO pacienteDTO) {
-        return ResponseEntity.ok(medicoService.guardarPaciente(pacienteDTO));
+    @GetMapping("/{id}/medicos")
+    public Set<MedicoDTO> listaMedicosDePaciente(@PathVariable Long id) {
+        return medicoService.buscarMedicosDePaciente(id);
     }
 
-    @PutMapping("/{id}")
-    public PacienteDTO update(@PathVariable Long id, @RequestBody PacienteDTO pacienteDTO) {
-        return medicoService.guardarPaciente(pacienteDTO);
+    @PostMapping
+    @PutMapping
+    public ResponseEntity<PacienteDTO> guardarPaciente(@RequestBody PacienteDTO pacienteDTO) {
+        return ResponseEntity.ok(medicoService.guardarPaciente(pacienteDTO));
     }
 
     @DeleteMapping("/{id}")

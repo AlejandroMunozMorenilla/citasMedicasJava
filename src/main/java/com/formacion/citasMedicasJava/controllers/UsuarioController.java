@@ -26,6 +26,7 @@ public class UsuarioController {
     }
 
     @PostMapping
+    @PutMapping
     public ResponseEntity<UsuarioDTO> guardarMedico(@RequestBody UsuarioDTO pacienteDTO) {
         return ResponseEntity.ok(usuarioService.guardarUsuario(pacienteDTO));
     }

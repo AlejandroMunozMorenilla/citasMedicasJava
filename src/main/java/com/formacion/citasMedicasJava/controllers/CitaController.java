@@ -26,13 +26,9 @@ public class CitaController {
     }
 
     @PostMapping
+    @PutMapping
     public ResponseEntity<CitaDTO> guardarMedico(@RequestBody CitaDTO citaDTO) {
         return ResponseEntity.ok(citaService.guardarCita(citaDTO));
-    }
-
-    @PutMapping("/{id}")
-    public CitaDTO update(@PathVariable Long id, @RequestBody CitaDTO citaDTO) {
-        return citaService.guardarCita(citaDTO);
     }
 
     @DeleteMapping("/{id}")

@@ -29,6 +29,7 @@ public class Paciente extends Usuario {
     private Set<Medico> medicos;
 
     public Paciente() {
+        super();
         medicos = new HashSet<>();
     }
 }

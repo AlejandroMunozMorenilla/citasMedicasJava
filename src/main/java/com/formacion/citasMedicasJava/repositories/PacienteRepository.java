@@ -8,6 +8,5 @@ import java.util.Set;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     @Query("select p from Paciente p inner join p.medicos medicos where medicos.id = ?1")
-    Set<Paciente> findByMedico_Id(Long id);
-
+    Set<Paciente> findAllByMedico_Id(Long id);
 }

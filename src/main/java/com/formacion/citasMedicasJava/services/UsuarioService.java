@@ -18,16 +18,16 @@ public class UsuarioService {
     private UsuarioMapper usuarioMapper;
 
     public Set<UsuarioDTO> todosLosUsuarios() {
-        return usuarioRepository.findAll().stream().map(usuarioMapper::toDTO).collect(Collectors.toSet());
+        return usuarioRepository.findAll().stream().map(usuarioMapper::toDto).collect(Collectors.toSet());
     }
 
     public UsuarioDTO buscarPorId(Long id) {
-        return usuarioMapper.toDTO(usuarioRepository.findById(id).orElse(null));
+        return usuarioMapper.toDto(usuarioRepository.findById(id).orElse(null));
     }
 
     public UsuarioDTO guardarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuarioGuardado = usuarioRepository.save(usuarioMapper.toEntity(usuarioDTO));
-        return usuarioMapper.toDTO(usuarioGuardado);
+        return usuarioMapper.toDto(usuarioGuardado);
     }
 
     public void eliminarPaciente(Long id) {

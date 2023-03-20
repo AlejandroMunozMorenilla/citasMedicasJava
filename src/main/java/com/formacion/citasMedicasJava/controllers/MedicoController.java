@@ -31,9 +31,12 @@ public class MedicoController {
         return medicoService.buscarPacientesDeMedico(id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<MedicoDTO> actualizarMedico(@PathVariable Long id, @RequestBody MedicoDTO medicoDto) {
+        return ResponseEntity.ok(medicoService.actualizarMedico(id, medicoDto));
+    }
     @PostMapping
-    @PutMapping
-    public ResponseEntity<MedicoDTO> guardarMedico(@RequestBody MedicoDTO medicoDto) {
+    public ResponseEntity<MedicoDTO> insertarMedico(@RequestBody MedicoDTO medicoDto) {
         return ResponseEntity.ok(medicoService.guardarMedico(medicoDto));
     }
 

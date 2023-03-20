@@ -25,12 +25,6 @@ public class UsuarioController {
         return usuarioService.buscarPorId(id);
     }
 
-    @PostMapping
-    @PutMapping
-    public ResponseEntity<UsuarioDTO> guardarMedico(@RequestBody UsuarioDTO pacienteDTO) {
-        return ResponseEntity.ok(usuarioService.guardarUsuario(pacienteDTO));
-    }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

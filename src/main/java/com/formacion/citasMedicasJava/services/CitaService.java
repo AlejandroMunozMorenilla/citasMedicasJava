@@ -5,6 +5,7 @@ import com.formacion.citasMedicasJava.mappers.CitaMapper;
 import com.formacion.citasMedicasJava.models.Cita;
 import com.formacion.citasMedicasJava.repositories.CitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -32,5 +33,18 @@ public class CitaService {
 
     public void eliminarCita(Long id) {
         citaRepository.deleteById(id);
+    }
+
+    public CitaDTO actualizarCita(Long id, CitaDTO citaDTO) {
+        CitaDTO citaGuardada = citaMapper.toDto(citaRepository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        citaGuardada.setFechaHora(citaDTO.getFechaHora());
+        citaGuardada.setMotivoCita(citaDTO.getMotivoCita());
+        citaGuardada.setAttribute11(citaDTO.getAttribute11());
+        citaGuardada.setMedico(citaDTO.getMedico());
+        citaGuardada.setPaciente(citaDTO.getPaciente());
+        citaGuardada.setDiagnostico(citaDTO.getDiagnostico());
+        citaRepository.save(citaMapper.toEntity(citaGuardada));
+        return citaGuardada;
+
     }
 }

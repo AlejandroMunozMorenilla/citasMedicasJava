@@ -7,10 +7,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
-public class Usuario extends AbstractPersistable<Long> {
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @Column(name = "nombre",
             length = 25,
             nullable = false

@@ -29,11 +29,13 @@ public class PacienteController {
     public Set<MedicoDTO> listaMedicosDePaciente(@PathVariable Long id) {
         return medicoService.buscarMedicosDePaciente(id);
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<PacienteDTO> actualizarPaciente(@PathVariable Long id, @RequestBody PacienteDTO pacienteDTO) {
+        return ResponseEntity.ok(medicoService.actualizarPaciente(id, pacienteDTO));
+    }
     @PostMapping
-    @PutMapping
-    public ResponseEntity<PacienteDTO> guardarPaciente(@RequestBody PacienteDTO pacienteDTO) {
-        return ResponseEntity.ok(medicoService.guardarPaciente(pacienteDTO));
+    public ResponseEntity<PacienteDTO> insertarPaciente(@RequestBody PacienteDTO pacienteDTO) {
+        return ResponseEntity.ok(medicoService.insertarPaciente(pacienteDTO));
     }
 
     @DeleteMapping("/{id}")

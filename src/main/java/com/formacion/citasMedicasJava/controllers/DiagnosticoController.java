@@ -1,6 +1,7 @@
 package com.formacion.citasMedicasJava.controllers;
 
 import com.formacion.citasMedicasJava.dtos.DiagnosticoDTO;
+import com.formacion.citasMedicasJava.repositories.DiagnosticoRepository;
 import com.formacion.citasMedicasJava.services.DiagnosticoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import java.util.Set;
 public class DiagnosticoController {
     @Autowired
     private DiagnosticoService diagnosticoService;
+    @Autowired
+    private DiagnosticoRepository diagnosticoRepository;
 
     @GetMapping
     public Set<DiagnosticoDTO> index() {
@@ -25,10 +28,13 @@ public class DiagnosticoController {
         return diagnosticoService.buscarPorId(id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<DiagnosticoDTO> actualizarDiagnostico(@PathVariable Long id, @RequestBody DiagnosticoDTO diagnosticoDTO) {
+        return ResponseEntity.ok(diagnosticoService.actualizarDiagnostico(id, diagnosticoDTO));
+    }
     @PostMapping
-    @PutMapping
-    public ResponseEntity<DiagnosticoDTO> guardarMedico(@RequestBody DiagnosticoDTO diagnosticoDTO) {
-        return ResponseEntity.ok(diagnosticoService.guardarDiagnostico(diagnosticoDTO));
+    public ResponseEntity<DiagnosticoDTO> insertarDiagnostico(@RequestBody DiagnosticoDTO diagnosticoDTO) {
+        return ResponseEntity.ok(diagnosticoService.insertarDiagnostico(diagnosticoDTO));
     }
 
     @DeleteMapping("/{id}")

@@ -1,11 +1,14 @@
 package com.formacion.citasMedicasJava.dtos;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Component
 public class UsuarioDTO {

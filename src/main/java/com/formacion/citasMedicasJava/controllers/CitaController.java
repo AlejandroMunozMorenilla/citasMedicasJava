@@ -1,6 +1,8 @@
 package com.formacion.citasMedicasJava.controllers;
 
 import com.formacion.citasMedicasJava.dtos.CitaDTO;
+import com.formacion.citasMedicasJava.dtos.PacienteDTO;
+import com.formacion.citasMedicasJava.models.Cita;
 import com.formacion.citasMedicasJava.services.CitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,10 +27,13 @@ public class CitaController {
         return citaService.buscarCitaPorId(id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CitaDTO> actualizarCita(@PathVariable Long id, @RequestBody CitaDTO citaDTO) {
+        return ResponseEntity.ok(citaService.actualizarCita(id, citaDTO));
+    }
     @PostMapping
-    @PutMapping
-    public ResponseEntity<CitaDTO> guardarMedico(@RequestBody CitaDTO citaDTO) {
-        return ResponseEntity.ok(citaService.guardarCita(citaDTO));
+    public ResponseEntity<CitaDTO> insertarCita(@RequestBody CitaDTO pacienteDTO) {
+        return ResponseEntity.ok(citaService.guardarCita(pacienteDTO));
     }
 
     @DeleteMapping("/{id}")

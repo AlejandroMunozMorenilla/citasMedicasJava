@@ -4,9 +4,11 @@ import com.formacion.citasMedicasJava.controllers.MedicoController;
 import com.formacion.citasMedicasJava.controllers.PacienteController;
 import com.formacion.citasMedicasJava.controllers.UsuarioController;
 import com.formacion.citasMedicasJava.models.Cita;
+import com.formacion.citasMedicasJava.models.Diagnostico;
 import com.formacion.citasMedicasJava.models.Medico;
 import com.formacion.citasMedicasJava.models.Paciente;
 import com.formacion.citasMedicasJava.repositories.CitaRepository;
+import com.formacion.citasMedicasJava.repositories.DiagnosticoRepository;
 import com.formacion.citasMedicasJava.repositories.MedicoRepository;
 import com.formacion.citasMedicasJava.repositories.PacienteRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -22,17 +24,20 @@ public class Demo implements CommandLineRunner {
     private final PacienteRepository pacienteRepository;
     private final MedicoRepository medicoRepository;
     private final CitaRepository citaRepository;
+    private final DiagnosticoRepository diagnosticoRepository;
 
     public Demo(UsuarioController usuarioController, MedicoController medicoController, PacienteController pacienteController,
                 PacienteRepository pacienteRepository,
                 MedicoRepository medicoRepository,
-                CitaRepository citaRepository) {
+                CitaRepository citaRepository,
+                DiagnosticoRepository diagnosticoRepository) {
         this.usuarioController = usuarioController;
         this.medicoController = medicoController;
         this.pacienteController = pacienteController;
         this.pacienteRepository = pacienteRepository;
         this.medicoRepository = medicoRepository;
         this.citaRepository = citaRepository;
+        this.diagnosticoRepository = diagnosticoRepository;
     }
 
     @Override
@@ -58,7 +63,10 @@ public class Demo implements CommandLineRunner {
         pacienteRepository.save(paciente);
         medicoRepository.save(medico);
 
-
+        Diagnostico diagnostico = new Diagnostico();
+        diagnostico.setEnfermedad("Resfriado común");
+        diagnostico.setValoracionEspecialista("Ibuprofeno");
+        diagnosticoRepository.save(diagnostico);
 
         Cita cita = new Cita();
         cita.setMotivoCita("Dolor de cabeza");
@@ -66,7 +74,13 @@ public class Demo implements CommandLineRunner {
         cita.setAttribute11(1);
         cita.setMedico(medico);
         cita.setPaciente(paciente);
+        cita.setDiagnostico(diagnostico);
 
         citaRepository.save(cita);
+
+        Medico medico2 = medicoRepository.findById(2L).orElse(null);
+        if (medico2 != null) {
+
+        }
     }
 }
